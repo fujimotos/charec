@@ -11,7 +11,7 @@ module rechar {
             this.clear();
         };
 
-        /** Reinitialize the internal state */
+        /** (Re-)Initialize the internal state */
         public clear(): void {
             this.buffer = [];
             this.total = 0;
