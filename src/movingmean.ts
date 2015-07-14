@@ -1,38 +1,33 @@
 module rechar {
 
-    /**
-     * A state machine to calculate the moving average.
-     */
-    export class MovingMean {
+    export class MovingAverage {
         private buffer: Array<number>;
         private total: number;
         
         constructor (public windowSize: number = 5) {
-            this.clear();
-        };
-
-        /** (Re-)Initialize the internal state */
-        public clear(): void {
             this.buffer = [];
             this.total = 0;
-        };
+        }
 
-        /** Feed a value to the state machine */
         public push(input: number): number {
-            this.buffer.push(input);
-
-            var winSize: number = this.windowSize;
-            var bufLen: number = this.buffer.length;
-
-            if (bufLen < winSize){
+            if (input === null){
                 return null;
-            } else if (bufLen > winSize){
-                var shifted: number = this.buffer.shift();
-                this.total += input - shifted;
-            } else {
-                this.total = util.sum(this.buffer);
             }
-            return this.total / winSize;
-        };
+
+            var buffer = this.buffer;
+            var windowSize = this.windowSize;
+
+            buffer.push(input);
+
+            if (buffer.length < windowSize){
+                return null;
+            } else if (buffer.length > windowSize){
+                this.total += (input - buffer.shift());
+            } else {
+                this.total = util.sum(buffer);
+            }
+
+            return this.total / windowSize;
+        }
     }
 }
