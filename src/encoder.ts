@@ -3,7 +3,7 @@
 
 module charec {
 
-    interface EventState {
+    export interface EventState {
         code: string;
         x: number;
         y: number;
