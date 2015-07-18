@@ -1,5 +1,5 @@
 
-module rechar.util {
+module charec.util {
 
     /**
      * Calculate the summation of an array.

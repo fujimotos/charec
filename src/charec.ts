@@ -2,7 +2,7 @@
 /// <reference path="movingaverage.ts" />
 /// <reference path="peekfinder.ts" />
 
-module rechar {
+module charec {
 
     interface State {
         code: string;

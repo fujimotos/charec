@@ -1,3 +1,3 @@
 build:
-	tsc --out dist/rechar.js src/main.ts
+	tsc --out dist/charec.js src/main.ts
 	

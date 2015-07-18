@@ -1,4 +1,4 @@
-module rechar {
+module charec {
 
     export class PeekFinder {
         private buffer: Array<number>;

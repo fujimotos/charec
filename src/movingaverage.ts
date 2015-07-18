@@ -1,4 +1,4 @@
-module rechar {
+module charec {
 
     export class MovingAverage {
         private buffer: Array<number>;
