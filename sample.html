@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <title>spella demo</title>
+  <script src='./dist/charec.js'></script>
+  <script>
+    window.addEventListener('load', function(){
+      var canvas = document.getElementById('board');
+      var output = document.getElementById('output');
+      charec.bind(canvas, output);
+    });
+  </script>
+  <style>
+    canvas {
+      border: 2px solid #777;
+      display: inline-block;
+    }
+    #output {
+      height: 350px;
+      width: 350px;
+      display: inline-block;
+      margin-left: 15px;
+      vertical-align: top;
+      text-align: center;
+      border: 1px solid #aaa;
+      font-family: monospace;
+      font-size: 300px;
+    }
+  </style>
+</head>
+<body lang='en'>
+  <h1>Charec Demo</h1>
+  <canvas id='board' height=350 width=350></canvas>
+  <div id='output'></div>
+</body>
+</html>
