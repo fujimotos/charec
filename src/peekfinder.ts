@@ -1,39 +1,37 @@
 module rechar {
 
-    /**
-     * A state machine to find the local extrema.
-     */
     export class PeekFinder {
         private buffer: Array<number>;
 
         constructor () {
-            this.clear();
-        };
-
-        public clear(): void {
             this.buffer = [];
-        };
+        }
 
         public push(input: number): number {
-            if (input !== null){
-                this.buffer.push(input);
+            if (input === null){
+                return null;
+            }
 
-                if (this.buffer.length < 3){
-                    return 0;
-                } else if (this.buffer.length > 3){
+            var buffer = this.buffer;
+            var len = buffer.length;
+
+            if (buffer[len-1] !== input){
+                buffer.push(input)
+
+                if (buffer.length < 3){
+                    return null;
+                } else if (buffer.length > 3){
                     this.buffer.shift();
                 }
 
-                var [a, b, c] = this.buffer;
-
-                if (a <= b && b > c){
+                if (Math.max(...buffer) == buffer[1]){
                     return 1;
-                }
-                if (a >= b && b < c){
+                } else if (Math.min(...buffer) == buffer[1]){
                     return -1;
                 }
             }
-            return 0;
-        };
+            return null;
+        }
     }
+
 }
