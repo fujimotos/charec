@@ -4,13 +4,13 @@
 
 module charec {
 
-    interface State {
+    interface EventState {
         code: string;
-        x?: number;
-        y?: number;
+        x: number;
+        y: number;
     }
 
-    export class Charec {
+    export class Encoder {
         private seq: string;
         private avgX: MovingAverage;
         private avgY: MovingAverage;
@@ -29,16 +29,16 @@ module charec {
             return this.seq;
         };
 
-        public feed (state: State) {
+        public feed (state: EventState) {
             switch (state.code){
                 case 'move':
                     this.feed_mv(state.x, state.y);
                     break;
                 case 'up':
-                    this.feed_u();
+                    this.feed_u(state.x, state.y);
                     break;
                 case 'down':
-                    this.feed_d();
+                    this.feed_d(state.x, state.y);
                     break;
             };
         };
@@ -52,14 +52,19 @@ module charec {
             }
             if (py !== null){
                 this.seq += py < 0 ? 'y' : 'Y';
-            };
+            }
         };
 
-        private feed_u () {
+        private feed_u (x: number, y: number) {
             this.seq += 'u';
         };
 
-        private feed_d () {
+        private feed_d (x: number, y: number) {
+            this.avgX = new MovingAverage();
+            this.avgY = new MovingAverage();
+            this.peekX = new PeekFinder();
+            this.peekY = new PeekFinder();
+
             this.seq += 'd';
         };
     };
