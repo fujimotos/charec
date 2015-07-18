@@ -1,4 +1,3 @@
-/// <reference path="util.ts" />
 /// <reference path="movingaverage.ts" />
 /// <reference path="peekfinder.ts" />
 
