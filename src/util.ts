@@ -1,4 +1,3 @@
-
 module charec.util {
 
     /**
@@ -41,5 +40,4 @@ module charec.util {
         }
         return matrix[i-1][j-1];
     }
-
 }

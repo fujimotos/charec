@@ -5,7 +5,7 @@
 module charec {
 
     /**
-     * Find the best matching number for the given stroke.
+     * Find the best matching character for the given stroke.
      */
     export function findmatch (input: string): number {
         var min: number = null;

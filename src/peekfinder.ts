@@ -36,5 +36,4 @@ module charec {
             return null;
         }
     }
-
 }
