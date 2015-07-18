@@ -1,5 +1,8 @@
 module charec {
 
+    /**
+     * Return the local maxima/minima.
+     */
     export class PeekFinder {
         private buffer: Array<number>;
 

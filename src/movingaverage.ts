@@ -1,5 +1,8 @@
 module charec {
 
+    /**
+     * Return the moving mean within the given window size.
+     */
     export class MovingAverage {
         private buffer: Array<number>;
         private total: number;
