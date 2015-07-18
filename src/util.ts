@@ -18,7 +18,7 @@ module charec.util {
     };
 
     /**
-     * Wagner-Fisher algorithm written in TypeScript.
+     * Wagner-Fischer algorithm implemented in TypeScript.
      */
     export function editdist(str1: string, str2: string){
 
