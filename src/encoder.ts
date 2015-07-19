@@ -15,7 +15,7 @@ module charec {
         private avgY: MovingAverage;
         private peekX: PeekFinder;
         private peekY: PeekFinder;
-        
+
         constructor () {
             this.seq = '';
             this.avgX = new MovingAverage();
@@ -45,7 +45,7 @@ module charec {
         private feed_mv (x: number, y: number) {
             var px = this.peekX.push(this.avgX.push(x));
             var py = this.peekY.push(this.avgY.push(y));
- 
+
             if (px !== null){
                 this.seq += px < 0 ? 'x' : 'X';
             }
