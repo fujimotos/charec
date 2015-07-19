@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <title>spella demo</title>
+  <title>Handwriting recognition demo</title>
   <script src='./dist/charec.js'></script>
   <script>
     window.addEventListener('load', function(){
@@ -23,15 +23,22 @@
       margin-left: 15px;
       vertical-align: top;
       text-align: center;
-      border: 1px solid #aaa;
       font-family: monospace;
       font-size: 300px;
     }
   </style>
 </head>
 <body lang='en'>
-  <h1>Charec Demo</h1>
+
+<h1>Handwriting recognition demo</h1>
+<p>Draw a single numric character (1 - 9) on the box below!</p>
+
+<div>
   <canvas id='board' height=350 width=350></canvas>
   <div id='output'></div>
+</div>
+
+<p>Source Code: <a href='http://github.com/fujimotos/charec'>http://github.com/fujimotos/charec</a>
+
 </body>
 </html>
