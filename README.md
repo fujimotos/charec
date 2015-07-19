@@ -13,4 +13,4 @@ Screenshot
 License
 -------
 
-MIT License
+MIT License (See LICENSE for details)
