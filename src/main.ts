@@ -4,6 +4,8 @@
 
 module charec {
 
+    export var DEBUG = 1;
+
     /**
      * Find the best matching character for the given stroke.
      */
@@ -11,13 +13,25 @@ module charec {
         var min: number = null;
         var result: number;
 
+        if (DEBUG){
+            console.log(`:: input = ${input}`);
+        }
+
         for (var stroke in model.numeric){
             var dist: number = util.editdist(input, stroke)
+
+            if (DEBUG){
+                console.log({target: model.numeric[stroke], stroke: stroke, dist: dist});
+            }
 
             if (min === null || dist < min){
                 min = dist;
                 result = model.numeric[stroke];
             }
+        }
+
+        if (DEBUG){
+            console.log(`result = ${result} (dist = ${min})`);
         }
         return result;
     }
@@ -40,6 +54,10 @@ module charec {
                     y: evt.pageY - this.offsetTop
                 }
                 encoder.feed(state);
+
+                if (DEBUG){
+                    console.log(`${state.code}\t${state.x}\t${state.y}\t${encoder.finish()}`);
+                }
 
                 // Draw a tracing line on canvas.
                 context.lineTo(state.x, state.y);

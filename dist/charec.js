@@ -211,18 +211,28 @@ var charec;
 /// <reference path="model.ts" />
 var charec;
 (function (charec) {
+    charec.DEBUG = 1;
     /**
      * Find the best matching character for the given stroke.
      */
     function findmatch(input) {
         var min = null;
         var result;
+        if (charec.DEBUG) {
+            console.log(":: input = " + input);
+        }
         for (var stroke in charec.model.numeric) {
             var dist = charec.util.editdist(input, stroke);
+            if (charec.DEBUG) {
+                console.log({ target: charec.model.numeric[stroke], stroke: stroke, dist: dist });
+            }
             if (min === null || dist < min) {
                 min = dist;
                 result = charec.model.numeric[stroke];
             }
+        }
+        if (charec.DEBUG) {
+            console.log("result = " + result + " (dist = " + min + ")");
         }
         return result;
     }
@@ -242,6 +252,9 @@ var charec;
                     y: evt.pageY - this.offsetTop
                 };
                 encoder.feed(state);
+                if (charec.DEBUG) {
+                    console.log(state.code + "\t" + state.x + "\t" + state.y + "\t" + encoder.finish());
+                }
                 // Draw a tracing line on canvas.
                 context.lineTo(state.x, state.y);
                 context.stroke();
