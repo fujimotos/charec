@@ -10,6 +10,13 @@ module charec.util {
     };
 
     /**
+     * Get the current time (in epoch).
+     */
+    export function now(): number {
+        return (new Date()).getTime();
+    };
+
+    /**
      * Wagner-Fischer algorithm implemented in TypeScript.
      */
     export function editdist(str1: string, str2: string){
