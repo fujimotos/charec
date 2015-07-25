@@ -143,6 +143,14 @@ var charec;
         util.sum = sum;
         ;
         /**
+         * Get the current time (in epoch).
+         */
+        function now() {
+            return (new Date()).getTime();
+        }
+        util.now = now;
+        ;
+        /**
          * Wagner-Fischer algorithm implemented in TypeScript.
          */
         function editdist(str1, str2) {
@@ -244,8 +252,11 @@ var charec;
         var encoder = new charec.Encoder();
         var context = canvas.getContext("2d");
         var isTracing = false;
+        var prev;
+        var current;
         canvas.addEventListener('mousemove', function (evt) {
-            if (isTracing) {
+            current = charec.util.now();
+            if (isTracing && (!prev || current - prev > 20)) {
                 var state = {
                     code: 'move',
                     x: evt.pageX - this.offsetLeft,
