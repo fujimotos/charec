@@ -45,9 +45,12 @@ module charec {
 
         var context = <CanvasRenderingContext2D> canvas.getContext("2d");
         var isTracing: Boolean = false;
+        var prev: number;
+        var current: number;
 
         canvas.addEventListener('mousemove', function(evt: MouseEvent){
-            if (isTracing){
+            current = util.now();
+            if (isTracing && (!prev || current - prev > 20)){
                 var state: EventState = {
                     code: 'move',
                     x: evt.pageX - this.offsetLeft,
