@@ -6,7 +6,7 @@ module charec {
     export class PeekFinder {
         private buffer: Array<number>;
 
-        constructor () {
+        constructor (public threshold: number = 5) {
             this.buffer = [];
         }
 
@@ -15,10 +15,11 @@ module charec {
                 return null;
             }
 
-            var buffer = this.buffer;
-            var len = buffer.length;
+            var buffer: number[] = this.buffer;
+            var threshold: number = this.threshold;
+            var len: number = buffer.length;
 
-            if (buffer[len-1] !== input){
+            if (!len || Math.abs(buffer[len-1] - input) > threshold){
                 buffer.push(input)
 
                 if (buffer.length < 3){
