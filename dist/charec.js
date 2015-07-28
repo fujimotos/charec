@@ -38,7 +38,9 @@ var charec;
      * Return the local maxima/minima.
      */
     var PeekFinder = (function () {
-        function PeekFinder() {
+        function PeekFinder(threshold) {
+            if (threshold === void 0) { threshold = 5; }
+            this.threshold = threshold;
             this.buffer = [];
         }
         PeekFinder.prototype.push = function (input) {
@@ -46,8 +48,9 @@ var charec;
                 return null;
             }
             var buffer = this.buffer;
+            var threshold = this.threshold;
             var len = buffer.length;
-            if (buffer[len - 1] !== input) {
+            if (!len || Math.abs(buffer[len - 1] - input) > threshold) {
                 buffer.push(input);
                 if (buffer.length < 3) {
                     return null;
