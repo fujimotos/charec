@@ -8,7 +8,7 @@ Demo: http://fujimotos.github.io/charec/
 Screenshot
 ----------
 
-![Screenshot](http://fujimotos.github.io/charec/img/charec_screenshot.png)
+![Screenshot](http://fujimotos.github.io/charec/img/charec_screencast.gif)
 
 
 How it works
