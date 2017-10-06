@@ -27,7 +27,7 @@ Then, this string is used to do a nearest neighbor search on model database.
 Screencast
 ----------
 
-![Screencast](http://fujimotos.github.io/charec/img/charec_screencast.gif)
+![Screencast](img/charec_screencast.gif)
 
 
 License
