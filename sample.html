@@ -2,20 +2,22 @@
 <html>
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <title>Handwriting recognition demo</title>
-  <script src='./dist/charec.js'></script>
+  <title>Charec: Handwriting recognition demo</title>
+  <script src='./charec.js'></script>
   <script>
     window.addEventListener('load', function(){
-      var canvas = document.getElementById('board');
-      var output = document.getElementById('output');
-      charec.bind(canvas, output);
+      var $canvas = document.getElementById('board');
+      var $output = document.getElementById('output');
+      var $reset = document.getElementById('reset');
+      var charlec = new Charlec($canvas, $output, $reset);
     });
   </script>
   <style>
     body {
-      font-family: Helvetica, sans-serif;
+      font-family: sans-serif;
     }
     h1,h2,h3 {
+      font-size: 1.5em;
       font-weight: normal;
     }
     canvas {
@@ -36,16 +38,18 @@
 <body lang='en'>
 
 <h1>Handwriting recognition demo</h1>
-<p>Draw a single numric character (1 - 9) on the box below.</p>
+
+<p>Write a numeric character (1 - 9) and see the recognition output.
 
 <div>
   <canvas id='board' height=350 width=350></canvas>
   <div id='output'></div>
 </div>
 
+<button id='reset'>Reset canvas</button>
+
 <ul>
-  <li>Reload the page to clear the canvas.</li>
-  <li>Source code is available at <a href='http://github.com/fujimotos/charec'>github</a>.
+  <li>Source code is available at <a href='http://github.com/fujimotos/charec'>github</a>!
 </ul>
 
 </body>
