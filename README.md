@@ -28,8 +28,3 @@ Screencast
 ----------
 
 ![Screencast](img/charec_screencast.gif)
-
-License
--------
-
-MIT License
