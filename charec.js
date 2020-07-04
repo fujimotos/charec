@@ -142,20 +142,53 @@ Charlec.prototype = {
     MOVINGAVG: 5,
 
     init: function() {
-        this.$canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
-        this.$canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
-        this.$canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
+        var onUp = this.onUp.bind(this);
+        var onDown = this.onDown.bind(this);
+        var onMove = this.onMove.bind(this);
+        var touchopt = {passive: false};
+
+        this.$canvas.addEventListener('mousedown', onDown);
+        this.$canvas.addEventListener('mouseup', onUp);
+        this.$canvas.addEventListener('mousemove', onMove);
+
+        this.$canvas.addEventListener('touchstart', onDown, touchopt);
+        this.$canvas.addEventListener('touchend', onUp, touchopt);
+        this.$canvas.addEventListener('touchmove', onMove, touchopt);
+
         this.$reset.addEventListener('click', this.reset.bind(this));
     },
 
     reset: function() {
         this.res = '';
         this.traced = false;
+        this.touchid = null;
         this.ctx.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
         this.$output.innerText = '';
     },
 
-    onMouseDown: function(evt) {
+    istouch: function(evt) {
+        return window.TouchEvent && (evt instanceof window.TouchEvent);
+    },
+
+    touchhandling: function() {
+        return this.touchid !== null;
+    },
+
+    findtouch: function(touchevent) {
+        for (i = 0; i < touchevent.changedTouches.length; i++) {
+            var touch = touchevent.changedTouches.item(i);
+            if (touch.identifier === this.touchid)
+                return touch;
+        }
+    },
+
+    onDown: function(evt) {
+        if (this.istouch(evt)) {
+            if (this.touchhandling()) return;
+            evt.preventDefault();
+            evt = evt.changedTouches[0];
+            this.touchid = evt.identifier;
+        }
         this.traced = true;
 
         var x = evt.pageX - this.$canvas.offsetLeft;
@@ -169,7 +202,13 @@ Charlec.prototype = {
         this.ctx.moveTo(x, y);
     },
 
-    onMouseUp: function(evt) {
+    onUp: function(evt) {
+        if (this.istouch(evt)) {
+            evt.preventDefault();
+            evt = this.findtouch(evt);
+            if (!evt) return;
+        }
+        this.touchid = null;
         this.traced = false;
 
         this.res += this.encode();
@@ -177,8 +216,13 @@ Charlec.prototype = {
         this.$output.innerText = this.guess();
     },
 
-    onMouseMove: function(evt) {
+    onMove: function(evt) {
         if (!this.traced) return;
+        if (this.istouch(evt)) {
+            evt.preventDefault();
+            evt = this.findtouch(evt);
+            if (!evt) return;
+        }
 
         var x = evt.pageX - this.$canvas.offsetLeft;
         var y = evt.pageY - this.$canvas.offsetTop;
