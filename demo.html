@@ -1,56 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <title>Charec: Handwriting recognition demo</title>
-  <script src='./charec.js'></script>
-  <script>
-    window.addEventListener('load', function(){
-      var $canvas = document.getElementById('board');
-      var $output = document.getElementById('output');
-      var $reset = document.getElementById('reset');
-      var charlec = new Charlec($canvas, $output, $reset);
-    });
-  </script>
-  <style>
-    body {
-      font-family: sans-serif;
-    }
-    h1,h2,h3 {
-      font-size: 1.5em;
-      font-weight: normal;
-    }
-    canvas {
-      border: 2px solid #777;
-      display: inline-block;
-    }
-    #output {
-      height: 350px;
-      width: 350px;
-      display: inline-block;
-      margin-left: 15px;
-      vertical-align: top;
-      text-align: center;
-      font-size: 300px;
-    }
-  </style>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta name="viewport" content="width=800">
+<title>Charec: Handwriting recognition demo</title>
+<script src='./charec.js'></script>
+<script>
+window.addEventListener('load', function(){
+    var $canvas = document.getElementById('board');
+    var $output = document.getElementById('output');
+    var $reset = document.getElementById('reset');
+    var charlec = new Charlec($canvas, $output, $reset);
+});
+</script>
+<style>
+body {font-family:sans-serif;margin:10px;}
+canvas {border:2px solid #777;display:inline-block;margin-right:15px;background:#eee}
+#output {display:inline-block;vertical-align:top;text-align:center;}
+button {margin:20px 0;}
+</style>
 </head>
 <body lang='en'>
-
 <h1>Handwriting recognition demo</h1>
-
-<p>Write a numeric character (1 - 9) and see the recognition output.
-
+<p>
+Draw a number (from 1 to 9) on canvas.
 <div>
-  <canvas id='board' height=350 width=350></canvas>
-  <div id='output'></div>
+<canvas id='board' height=350 width=350></canvas>
+<div style='height:350px;width:350px;font-size:300px;' id='output'></div>
 </div>
-
 <button id='reset'>Reset canvas</button>
-
-<ul>
-  <li>Source code is available at <a href='http://github.com/fujimotos/charec'>github</a>!
-</ul>
-
 </body>
 </html>
